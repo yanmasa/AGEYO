@@ -18,9 +18,9 @@
 - recipientは支援内容を閲覧でき、contributorにアクションを起こすことができる。
 
 ## 設計書
- ER図: https://app.diagrams.net/#G1RiHrW8HwzFe9WR9dxcYjYupz31wI_Hnv
- テーブル定義書: https://docs.google.com/spreadsheets/d/1HSUH6LG21hqAI1mHhDLkhabUEo8_XVTcivoCJnR35L4/edit#gid=856357510
- アプリケーション詳細設計: https://docs.google.com/spreadsheets/d/1ZJrUjjjCGxhTZywP-NrwUDSDYA4iNZ2jV2QNcyPTqgI/edit#gid=1526047705
+- ER図: https://app.diagrams.net/#G1RiHrW8HwzFe9WR9dxcYjYupz31wI_Hnv
+- テーブル定義書: https://docs.google.com/spreadsheets/d/1HSUH6LG21hqAI1mHhDLkhabUEo8_XVTcivoCJnR35L4/edit#gid=856357510
+- アプリケーション詳細設計: https://docs.google.com/spreadsheets/d/1ZJrUjjjCGxhTZywP-NrwUDSDYA4iNZ2jV2QNcyPTqgI/edit#gid=1526047705
 
 
 ## チャレンジ要素一覧
