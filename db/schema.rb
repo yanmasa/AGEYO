@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_02_062817) do
+ActiveRecord::Schema.define(version: 2021_11_05_030505) do
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "organization_name", null: false
+    t.string "email", null: false
+    t.integer "phone_number", null: false
+    t.integer "subject", default: 0, null: false
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "contributors", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -29,6 +40,24 @@ ActiveRecord::Schema.define(version: 2021_11_02_062817) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_contributors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_contributors_on_reset_password_token", unique: true
+  end
+
+  create_table "post_genres", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "contributor_id", null: false
+    t.integer "post_genre_id", null: false
+    t.string "title", null: false
+    t.text "content", null: false
+    t.text "post_image_url"
+    t.integer "status", default: 0, null: false
+    t.integer "prefecture", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "recipients", force: :cascade do |t|
