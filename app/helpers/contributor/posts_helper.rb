@@ -1,0 +1,2 @@
+module Contributor::PostsHelper
+end
