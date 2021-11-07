@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_05_030505) do
+ActiveRecord::Schema.define(version: 2021_11_07_011744) do
 
   create_table "contacts", force: :cascade do |t|
     t.string "name", null: false
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2021_11_05_030505) do
     t.string "nickname", null: false
     t.string "organization_name"
     t.text "organization_url"
-    t.text "profile_image_url"
+    t.text "profile_image_id"
     t.text "introduction"
     t.boolean "is_active", default: true, null: false
     t.datetime "created_at", null: false
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2021_11_05_030505) do
     t.integer "post_genre_id", null: false
     t.string "title", null: false
     t.text "content", null: false
-    t.text "post_image_url"
+    t.text "post_image_id"
     t.integer "status", default: 0, null: false
     t.integer "prefecture", default: 0, null: false
     t.datetime "created_at", null: false

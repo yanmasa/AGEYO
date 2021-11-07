@@ -1,3 +1,11 @@
 <header>
   <%= link_to 'AGEYO', root_path %>
+  <% if contributor_signed_in? %>
+  <%= link_to 'マイページ', contributor_contributor_path(current_contributor) %>
+  <%= link_to 'ログアウト', destroy_contributor_session_path, method: :delete %>
+  <% elsif recipient_signed_in? %>
+  <%= link_to 'ログアウト', destroy_recipient_session_path, method: :delete %>
+  <% else %>
+  <% link_to 'ログイン', root_path %>
+  <% end %>
 </header>

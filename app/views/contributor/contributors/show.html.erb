@@ -1,0 +1,11 @@
+<div><%= attachment_image_tag @contributor, :profile_image, :fill, 100, 100, format: 'jpg' %></div>
+<div><%= @contributor.name %></div>
+<div><%= @contributor.nickname %></div>
+<% if @contributor.organization_url %>
+  <div><%= link_to @contributor.organization_name, @contributor.organization_url %></div>
+<% else %>
+  <div><%= @contributor.organization_name %></div>
+<% end %>
+<div><%= @contributor.introduction %></div>
+
+<%= link_to '編集', edit_contributor_contributor_path(current_contributor) %>

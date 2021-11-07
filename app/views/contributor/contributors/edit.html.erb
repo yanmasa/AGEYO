@@ -1,0 +1,36 @@
+<div>
+<%= form_with model: @contributor,url: contributor_contributor_path(current_contributor), method: :patch, local: true do |f| %>
+<div>
+<%= f.label :name %>
+<%= f.text_field :name, autofocus: true %>
+</div>
+<div>
+<%= f.label :nickname %>
+<%= f.text_field :nickname %>
+</div>
+<div>
+<%= f.label :email %>
+<%= f.email_field :email %>
+</div>
+<div>
+<%= f.label :organization_name %>
+<%= f.text_field :organization_name %>
+</div>
+<div>
+<%= f.label :organization_url %>
+<%= f.text_field :organization_url %>
+</div>
+<div>
+<%= f.label :profile_image %>
+<%= attachment_image_tag @contributor, :profile_image, :fill, 100, 100, format: 'jpg' %>
+<%= f.attachment_field :profile_image %>
+</div>
+<div>
+<%= f.label :introduction %>
+<%= f.text_field :introduction %>
+</div>
+<div>
+<%= f.submit '変更' %>
+</div>
+<% end %>
+</div>
