@@ -1,0 +1,32 @@
+<div>
+<%= form_with model: @post, url: contributor_post_path(@post), method: :patch, local: true do |f| %>
+<div>
+  <%= f.label :title %>
+  <%= f.text_field :title, autofocus: true %>
+</div>
+
+<div>
+  <%= f.label :post_genre_id %>
+  <%= f.collection_select :post_genre_id, PostGenre.all, :id, :name %>
+</div>
+<div>
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+</div>
+<div>
+  <%= f.label :post_image %>
+  <%= f.attachment_field :post_image %>
+</div>
+<div>
+  <%= f.label :states %>
+  <%= f.select :status, Post.statuses.keys %>
+</div>
+<div>
+  <%= f.label :prefecture %>
+  <%= f.select :prefecture, Post.prefectures.keys %>
+</div>
+<div>
+  <%= f.submit '変更を保存' %>
+</div>
+<% end %>
+</div>
