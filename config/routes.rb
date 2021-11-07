@@ -17,6 +17,7 @@ Rails.application.routes.draw do
         patch :out
       end
     end
+    resources :posts
 
   end
 end
