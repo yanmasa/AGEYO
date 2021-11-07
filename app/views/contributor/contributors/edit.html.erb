@@ -1,5 +1,5 @@
 <div>
-<%= form_with model: @contributor,url: contributor_contributor_path(current_contributor), method: :patch, local: true do |f| %>
+<%= form_with model: @contributor, url: contributor_contributors_path, method: :patch, local: true do |f| %>
 <div>
 <%= f.label :name %>
 <%= f.text_field :name, autofocus: true %>
@@ -34,3 +34,4 @@
 </div>
 <% end %>
 </div>
+<%= link_to '退会する', quit_contributor_contributors_path %>

@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     case resource
     when Contributor
-      contributor_contributor_path(current_contributor)
+      contributor_contributors_path
     when Recipient
-      recipient_path(current_recipient)
+      recipient_path
     end
   end
   # def configure_permitted_parameters
