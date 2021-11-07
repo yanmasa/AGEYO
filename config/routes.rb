@@ -11,6 +11,12 @@ Rails.application.routes.draw do
   get '/about' => 'homes#about', as: 'about'
 
   namespace :contributor do
-    resources :contributors
+    resource :contributors do
+      member do
+        get :quit
+        patch :out
+      end
+    end
+
   end
 end
