@@ -16,6 +16,11 @@ class Recipient::RecipientsController < ApplicationController
     end
   end
 
+  def favorite_index
+    @recipient = current_recipient
+    @favorites = @recipient.favorites
+  end
+
   private
 
   def recipient_params

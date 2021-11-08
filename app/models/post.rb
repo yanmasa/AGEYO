@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :contributor
   belongs_to :post_genre
+  has_many :favorites, dependent: :destroy
   attachment :post_image
   enum prefecture: {
     指定地域なし:1,
@@ -17,4 +18,8 @@ class Post < ApplicationRecord
   enum status: {
     非公開:1, 公開:2,決定済み:3
   }
+  
+  def favorited_by?(recipient)
+    favorites.where(recipient_id: recipient.id).exists?
+  end
 end

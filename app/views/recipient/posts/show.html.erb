@@ -17,8 +17,17 @@
   <%= @post.prefecture %>
 </div>
 <div>
-  <p>お気に入り</p>
+  <% if @post.favorited_by?(@recipient) %>
+    <%= link_to post_favorites_path(@post), method: :delete do %>
+      <p>ストックを外す</p>
+    <% end %>
+  <% else %>
+    <%= link_to post_favorites_path(@post), method: :post do %>
+      <p>ストック</p>
+    <% end %>
+  <% end %>
 </div>
+<div>ストック中のユーザー数:<%= @post.favorites.count %>人</div>
 <div>
   <p>リクエスト中のユーザー数</p>
   <p>リクエスト</p>

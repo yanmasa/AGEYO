@@ -21,9 +21,14 @@ Rails.application.routes.draw do
   end
 
   scope module: :recipient do
-    resource :recipients
+    resource :recipients do
+      member do
+        get :favorite_index
+      end
+    end
     resources :posts do
       resource :favorites, only: [:create, :destroy]
+      resource :requests, only: [:create]
     end
     resources :contributors
   end
