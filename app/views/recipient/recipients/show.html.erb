@@ -1,0 +1,13 @@
+<div>
+<%= @recipient.name %>
+</div>
+<div>
+<% if @recipient.organization_url %>
+<%= link_to @recipient.organization_name, @recipient.organization_url %>
+<% else %>
+<%= @recipient.organization_name %>
+<% end %>
+</div>
+<div>
+<%= link_to "編集", edit_recipients_path %>
+</div>
