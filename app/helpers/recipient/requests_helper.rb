@@ -1,0 +1,2 @@
+module Recipient::RequestsHelper
+end
