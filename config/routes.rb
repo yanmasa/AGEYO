@@ -22,5 +22,7 @@ Rails.application.routes.draw do
 
   scope module: :recipient do
     resource :recipients
+    resources :posts
+    resources :contributors
   end
 end

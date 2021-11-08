@@ -1,0 +1,17 @@
+<div>
+<% @posts.each do |post| %>
+</div>
+<div>
+<%= post.updated_at.to_s(:day_jp) %>
+</div>
+
+<%= link_to post_path(post) do %>
+<div>
+<%= attachment_image_tag post, :post_image, :fill ,100 ,100 ,format: 'jpeg' %>
+</div>
+<div>
+<%= post.title %>
+</div>
+<% end %>
+<% end %>
+</div>
