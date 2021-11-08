@@ -29,6 +29,10 @@
 </div>
 <div>ストック中のユーザー数:<%= @post.favorites.count %>人</div>
 <div>
-  <p>リクエスト中のユーザー数</p>
-  <p>リクエスト</p>
+<div>リクエスト中のユーザー数:<%= @post.requests.count %>人</div>
+  <% if @post.requested_by?(@recipient) %>
+    <p>現在、リクエスト中です。</p>
+  <% else %>
+  　<%= link_to 'リクエストを送る',post_requests_path(@post), method: :post, data: { confirm: "【確認】リクエストは取り消せません。\n本当にリクエストしますか？" } %>
+  <% end %>
 </div>
