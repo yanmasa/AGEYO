@@ -1,6 +1,6 @@
 class Recipient::PostsController < ApplicationController
   def index
-    @posts = Post.where(status: '非公開')
+    @posts = Post.where(status: '公開')
   end
 
   def show

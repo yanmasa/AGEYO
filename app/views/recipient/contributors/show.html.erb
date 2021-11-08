@@ -1,1 +1,23 @@
-<%= @contributor.name %>
+<div><%= attachment_image_tag @contributor, :profile_image, :fill, 100, 100, format: 'jpg' %></div>
+<div><%= @contributor.name %></div>
+<div><%= @contributor.nickname %></div>
+<% if @contributor.organization_url %>
+  <div><%= link_to @contributor.organization_name, @contributor.organization_url %></div>
+<% else %>
+  <div><%= @contributor.organization_name %></div>
+<% end %>
+<div><%= @contributor.introduction %></div>
+
+<div>
+<% @posts.each do |post| %>
+<div>
+  <%= post.updated_at.to_s(:day_jp) %>
+</div>
+<div>
+<%= link_to post_path(post) do %>
+<%= attachment_image_tag post, :post_image, :fill, 100, 100, format: 'jpg' %>
+<%= post.title %>
+<% end %>
+</div>
+<% end %>
+</div>
