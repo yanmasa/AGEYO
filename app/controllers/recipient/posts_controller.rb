@@ -6,5 +6,6 @@ class Recipient::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @contributor = @post.contributor
+    @recipient = current_recipient
   end
 end
