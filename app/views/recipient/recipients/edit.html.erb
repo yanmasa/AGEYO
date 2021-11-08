@@ -1,0 +1,24 @@
+<div>
+<%= form_with model: @recipient, url: recipients_path, method: :patch, local: true do |f| %>
+<div>
+  <%= f.label :name %>
+  <%= f.text_field :name, autofocus: true %>
+</div>
+
+<div>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+</div>
+<div>
+  <%= f.label :organization_name %>
+  <%= f.text_field :organization_name %>
+</div>
+<div>
+  <%= f.label :organization_url %>
+  <%= f.text_field :organization_url %>
+</div>
+<div>
+  <%= f.submit '変更を保存' %>
+</div>
+<% end %>
+</div>

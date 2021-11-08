@@ -18,6 +18,9 @@ Rails.application.routes.draw do
       end
     end
     resources :posts
+  end
 
+  scope module: :recipient do
+    resource :recipients
   end
 end
