@@ -1,0 +1,10 @@
+<div>
+  <% @recipients.each do |recipient| %>
+    <div>
+      <%= recipient.name %>
+    </div>
+    <div>
+      <%= recipient.organization_name %>
+    </div>
+  <% end %>
+</div>

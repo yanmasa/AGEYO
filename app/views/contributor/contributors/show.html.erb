@@ -12,3 +12,7 @@
 
 <%= link_to 'My投稿一覧', contributor_posts_path %>
 
+<%= link_to contributor_followers_path(@contributor) do %>
+<p>フォロワー数:<%= @contributor.relationships.count %>人</p>
+<% end %>
+

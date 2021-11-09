@@ -1,6 +1,5 @@
 <div>
-  <% @favorites.each do |favorite| %>
-    <% post = Post.find_by(id: favorite.post_id) %>
+  <% @posts.each do |post| %>
     <div>
       <%= post.updated_at.to_s(:day_jp) %>
     </div>

@@ -1,0 +1,15 @@
+<div>
+  <% @contributors.each do |contributor| %>
+    <%= link_to contributor_path(contributor) do %>
+      <div>
+        <%= contributor.nickname %>
+      </div>
+      <div>
+        <%= attachment_image_tag contributor, :profile_image, :fill ,100 ,100 ,format: 'jpeg' %>
+      </div>
+    <% end %>
+    <div>
+      <%= contributor.organization_name %>
+    </div>
+  <% end %>
+</div>

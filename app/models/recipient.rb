@@ -4,6 +4,20 @@ class Recipient < ApplicationRecord
   devise :database_authenticatable, #:registerable,
          :recoverable, :rememberable, :validatable
   has_many :favorites, dependent: :destroy
+  has_many :stocks, through: :favorites, source: :post
   has_many :requests, dependent: :destroy
+  has_many :relationships, dependent: :destroy
+  has_many :followings, through: :relationships, source: :contributor
 
+  def follow(parameter)
+    self.relationships.create(contributor_id: parameter)
+  end
+
+  def unfollow(parameter)
+    self.relationships.find_by(contributor_id: parameter).destroy
+  end
+
+  def following?(contributor)
+    self.followings.include?(contributor)
+  end
 end

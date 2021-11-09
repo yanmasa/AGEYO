@@ -21,15 +21,17 @@ Rails.application.routes.draw do
   end
 
   scope module: :recipient do
-    resource :recipients do
-      member do
-        get :favorite_index
-      end
+    resources :recipients do
+      get 'favorites' => 'favorites#index'
+      get 'follows' => 'relationships#follows', as: 'follows'
     end
     resources :posts do
       resource :favorites, only: [:create, :destroy]
       resource :requests, only: [:create]
     end
-    resources :contributors
+    resources :contributors do
+      resource :relationships, only: [:create, :destroy]
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
   end
 end

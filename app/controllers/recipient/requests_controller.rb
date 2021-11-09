@@ -1,8 +1,6 @@
 class Recipient::RequestsController < ApplicationController
   def create
-    @post = Post.find(params[:post_id])
-    @request = current_recipient.requests.new(post_id: @post.id)
-    @request.save
+    current_recipient.requests.create(post_id: params[:post_id])
     redirect_to request.referer
   end
 end
