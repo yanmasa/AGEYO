@@ -9,8 +9,8 @@
 <% end %>
 </div>
 <div>
-<%= link_to '編集', edit_recipients_path %>
+<%= link_to '編集', edit_recipient_path(@recipient) %>
 </div>
 <div>
-  <%= link_to 'ストック一覧', favorite_index_recipients_path %>
+  <%= link_to 'ストック一覧', recipient_favorites_path(@recipient) %>
 </div>

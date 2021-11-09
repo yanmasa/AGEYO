@@ -10,7 +10,7 @@ class Contributor::ContributorsController < ApplicationController
   def update
     @contributor = current_contributor
     if @contributor.update(contributor_params)
-      redirect_to contributor_contributor_path(current_contributor)
+      redirect_to contributor_contributors_path
     else
       render :edit
     end

@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     when Contributor
       contributor_contributors_path
     when Recipient
-      recipients_path
+      recipient_path(current_recipient)
     end
   end
   # def configure_permitted_parameters

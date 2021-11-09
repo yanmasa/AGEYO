@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_08_070923) do
+ActiveRecord::Schema.define(version: 2021_11_09_005508) do
 
   create_table "contacts", force: :cascade do |t|
     t.string "name", null: false
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 2021_11_08_070923) do
     t.integer "recipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_favorites_on_post_id"
+    t.index ["recipient_id"], name: "index_favorites_on_recipient_id"
   end
 
   create_table "post_genres", force: :cascade do |t|
@@ -82,11 +84,22 @@ ActiveRecord::Schema.define(version: 2021_11_08_070923) do
     t.index ["reset_password_token"], name: "index_recipients_on_reset_password_token", unique: true
   end
 
+  create_table "relationships", force: :cascade do |t|
+    t.integer "contributor_id"
+    t.integer "recipient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contributor_id"], name: "index_relationships_on_contributor_id"
+    t.index ["recipient_id"], name: "index_relationships_on_recipient_id"
+  end
+
   create_table "requests", force: :cascade do |t|
     t.integer "post_id"
     t.integer "recipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_requests_on_post_id"
+    t.index ["recipient_id"], name: "index_requests_on_recipient_id"
   end
 
 end

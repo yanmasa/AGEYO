@@ -8,6 +8,20 @@
 <% end %>
 <div><%= @contributor.introduction %></div>
 
+<p>フォロワー数:<%= @contributor.relationships.count %>人</p>
+
+<div>
+  <% if @recipient.following?(@contributor) %>
+    <%= link_to contributor_relationships_path(@contributor), method: :delete do %>
+      <p>フォローを外す</p>
+    <% end %>
+  <% else %>
+    <%= link_to contributor_relationships_path(@contributor), method: :post do %>
+      <p>フォローする</p>
+    <% end %>
+  <% end %>
+</div>
+
 <div>
 <% @posts.each do |post| %>
 <div>

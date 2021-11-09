@@ -23,7 +23,7 @@ class Post < ApplicationRecord
   def favorited_by?(recipient)
     favorites.where(recipient_id: recipient.id).exists?
   end
-  
+
   def requested_by?(recipient)
     requests.where(recipient_id: recipient.id).exists?
   end
