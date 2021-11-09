@@ -15,4 +15,23 @@
 <%= link_to contributor_followers_path(@contributor) do %>
 <p>フォロワー数:<%= @contributor.relationships.count %>人</p>
 <% end %>
+<div>
+  <p>やり取り中のチャット一覧</p>
+  <% n = 0 %>
+  <% @posts.each do |post| %>
+    <% @rooms = post.rooms %>
+    <% if @rooms %>
+      <% @rooms.each do |room| %>
+        <% n = 1 %>
+        <%= link_to room_path(room) do %>
+          <%= post.title %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <% unless n == 1 %>
+    <p>現在、やり取り中のチャットはございません。</p>
+  <% end %>
+
+</div>
 

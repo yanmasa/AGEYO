@@ -3,6 +3,8 @@ class Post < ApplicationRecord
   belongs_to :post_genre
   has_many :favorites, dependent: :destroy
   has_many :requests, dependent: :destroy
+  has_many :requesters, through: :requests, source: :recipient
+  has_many :rooms
   attachment :post_image
   enum prefecture: {
     指定地域なし:1,
@@ -26,5 +28,9 @@ class Post < ApplicationRecord
 
   def requested_by?(recipient)
     requests.where(recipient_id: recipient.id).exists?
+  end
+  
+  def created_rooms?(recipient)
+    rooms.where(recipient_id: recipient.id).exists?
   end
 end

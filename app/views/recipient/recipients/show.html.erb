@@ -14,3 +14,15 @@
 <div>
   <%= link_to 'ストック一覧', recipient_favorites_path(@recipient) %>
 </div>
+<div>
+  <p>やり取り中のチャット一覧</p>
+  <% if @rooms %>
+    <% @rooms.each do |room| %>
+      <%= link_to room_path(room) do %>
+        <%= Post.find(room.post_id).title %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p>現在、やり取り中のチャットはございません。</p>
+  <% end %>
+</div>

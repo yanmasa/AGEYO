@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_09_005508) do
+ActiveRecord::Schema.define(version: 2021_11_09_104456) do
 
   create_table "contacts", force: :cascade do |t|
     t.string "name", null: false
@@ -49,6 +49,15 @@ ActiveRecord::Schema.define(version: 2021_11_09_005508) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_favorites_on_post_id"
     t.index ["recipient_id"], name: "index_favorites_on_recipient_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "room_id"
+    t.boolean "is_recipient", default: true, null: false
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
   end
 
   create_table "post_genres", force: :cascade do |t|
@@ -100,6 +109,16 @@ ActiveRecord::Schema.define(version: 2021_11_09_005508) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_requests_on_post_id"
     t.index ["recipient_id"], name: "index_requests_on_recipient_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "post_id"
+    t.boolean "chat_status", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_rooms_on_post_id"
+    t.index ["recipient_id"], name: "index_rooms_on_recipient_id"
   end
 
 end
