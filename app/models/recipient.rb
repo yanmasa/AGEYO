@@ -8,6 +8,7 @@ class Recipient < ApplicationRecord
   has_many :requests, dependent: :destroy
   has_many :relationships, dependent: :destroy
   has_many :followings, through: :relationships, source: :contributor
+  has_many :rooms
 
   def follow(parameter)
     self.relationships.create(contributor_id: parameter)

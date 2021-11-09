@@ -1,6 +1,7 @@
 class Contributor::ContributorsController < ApplicationController
   def show
     @contributor = current_contributor
+    @posts = @contributor.posts
   end
 
   def edit

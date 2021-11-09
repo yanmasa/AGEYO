@@ -13,6 +13,8 @@ class Contributor::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @genres = PostGenre.all
+    @recipients = @post.requesters
+    @room = Room.new
   end
 
   def index

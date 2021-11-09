@@ -1,6 +1,7 @@
 class Recipient::RecipientsController < ApplicationController
   def show
     @recipient = current_recipient
+    @rooms = @recipient.rooms
   end
 
   def edit

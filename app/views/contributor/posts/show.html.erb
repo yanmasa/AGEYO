@@ -22,3 +22,26 @@
 
 <div>ストック中のユーザー数:<%= @post.favorites.count %>人</div>
 <div>リクエスト中のユーザー数:<%= @post.requests.count %>人</div>
+<div>
+  <div>
+  <% @recipients.each do |recipient| %>
+    <div>
+      <%= recipient.name %>
+    </div>
+    <div>
+      <%= recipient.organization_name %>
+    </div>
+    <div>
+      <% if @post.created_rooms?(recipient) %>
+        <%= link_to 'チャットルームへ', room_path(@post.rooms.find_by(recipient_id: recipient.id)) %>
+      <% else %>
+        <%= form_with model: @room, url: rooms_path, method: :post, local: true do |f| %>
+          <%= f.hidden_field :post_id, value: @post.id %>
+          <%= f.hidden_field :recipient_id, value: recipient.id %>
+          <%= f.submit 'チャットルームを作る' %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+</div>
