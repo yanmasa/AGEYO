@@ -1,13 +1,26 @@
-<h1>こちらはトップページです</h1>
+<div class="main">
+  <div class="main__visual">
+    <h1 class="main__visual__title">寄付をする、してもらうためのサイト<br>
+    AGEYO
+    </h1>
+    <div class="main__visual__content">
+      <% unless contributor_signed_in? || recipient_signed_in? %>
+        <div class="main__visual__content__list">
+        <p class="main__visual__content__list_text">寄付を必要とする方</p>
 
-<% unless contributor_signed_in? || recipient_signed_in? %>
-<p>寄付を必要とする方</p>
-<%= link_to "ログインはこちら", new_recipient_session_path %>
+        <%= link_to "ログインはこちら", new_recipient_session_path, class:"main__visual__content__list__link" %>
 
-<%= link_to "新規登録はこちら", root_path %>
+        <%= link_to "新規登録はこちら", root_path, class:"main__visual__content__list__link" %>
+        </div>
+        <div class="main__visual__content__list">
+        <p class="main__visual__content__list_text">寄付をする方</p>
+        <%= link_to "ログインはこちら", new_contributor_session_path, class:"main__visual__content__list__link" %>
 
-<p>寄付をする方</p>
-<%= link_to "ログインはこちら", new_contributor_session_path %>
+        <%= link_to "新規登録はこちら", new_contributor_registration_path, class:"main__visual__content__list__link" %>
+        </div>
+      <% else %>
 
-<%= link_to "新規登録はこちら", new_contributor_registration_path %>
-<% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

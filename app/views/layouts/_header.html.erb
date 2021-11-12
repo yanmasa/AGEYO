@@ -1,16 +1,44 @@
-<header>
-  <%= link_to 'AGEYO', root_path %>
-  <% if contributor_signed_in? %>
-  <%= link_to 'マイページ', contributor_contributors_path %>
-  <%= link_to '投稿一覧', posts_path %>
-  <%= link_to '新規投稿', new_contributor_post_path %>
-  <%= link_to 'ログアウト', destroy_contributor_session_path, method: :delete %>
-  <% elsif recipient_signed_in? %>
-  <%= link_to 'マイページ', recipient_path(current_recipient) %>
-  <%= link_to 'フォロー一覧', recipient_follows_path(current_recipient) %>
-  <%= link_to '投稿一覧', posts_path %>
-  <%= link_to 'ログアウト', destroy_recipient_session_path, method: :delete %>
-  <% else %>
-  <% link_to 'ログイン', root_path %>
-  <% end %>
+<header class="header">
+  <div class ="header__wrapper">
+      <div class="header__wrapper__logo">
+        <%= link_to root_path do %>
+          <h1>AGEYO</h1>
+        <% end %>
+      </div>
+      <nav class="header__wrapper__nav">
+        <ul class="header__wrapper__nav__ul">
+        <% if contributor_signed_in? %>
+          <li class="header__wrapper__nav__ul__li">
+            <%= link_to 'マイページ', contributor_contributors_path, class:"header__wrapper__nav__ul__li_state_current" %>
+          </li>
+          <li class="header__wrapper__nav__ul__li">
+            <%= link_to '投稿一覧', posts_path, class:"header__wrapper__nav__ul__li_state_current" %>
+          </li>
+          <li class="header__wrapper__nav__ul__li">
+            <%= link_to '新規投稿', new_contributor_post_path, class:"header__wrapper__nav__ul__li_state_current" %>
+          </li>
+          <li class="header__wrapper__nav__ul__li">
+            <%= link_to 'ログアウト', destroy_contributor_session_path, method: :delete, class:"header__wrapper__nav__ul__li_state_current" %>
+          </li>
+        <% elsif recipient_signed_in? %>
+          <li class="header__wrapper__nav__ul__li">
+            <%= link_to 'マイページ', recipient_path(current_recipient), class:"header__wrapper__nav__ul__li_state_current" %>
+          </li>
+          <li class="header__wrapper__nav__ul__li">
+            <%= link_to 'フォロー一覧', recipient_follows_path(current_recipient), class:"header__wrapper__nav__ul__li_state_current" %>
+          </li>
+          <li class="header__wrapper__nav__ul__li">
+            <%= link_to '投稿一覧', posts_path, class:"header__wrapper__nav__ul__li_state_current" %>
+          </li>
+          <li class="header__wrapper__nav__ul__li">
+            <%= link_to 'ログアウト', destroy_recipient_session_path, method: :delete, class:"header__wrapper__nav__ul__li_state_current" %>
+          </li>
+        <% else %>
+          <li class="header__wrapper__nav__ul__li">
+            <%= link_to 'ログイン', root_path, class:"header__wrapper__nav__ul__li_state_current" %>
+          </li>
+        <% end %>
+        </ul>
+      </nav>
+  </div>
 </header>

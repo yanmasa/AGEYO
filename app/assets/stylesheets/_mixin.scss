@@ -1,0 +1,55 @@
+//幅とマージンオート
+@mixin width{
+    width: 960px;
+    margin: 0 auto;
+}
+
+//フレックスボックス両端寄せ
+@mixin flex_between{
+    display: flex;
+    justify-content: space-between;
+}
+
+//フレックスボックス縦の中央寄せ
+@mixin flex_align_center{
+    display: flex;
+    align-items: center;
+}
+
+//ボタン
+@mixin btn($border_color){
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 30px;
+    border: 1px solid $border_color;
+}
+
+//ボタンのリンク
+@mixin btnLink($color){
+    color: $color;
+    text-decoration: none;
+    font-size: 20px;
+    line-height: 40px;
+    display: block;
+    transition: .4s;
+}
+
+//ボタンのリンクのホバー
+@mixin btnLinkHover($color, $background){
+    color: $color;
+    background: $background;
+}
+
+@mixin link($color){
+    display: inline-block;
+    padding: 16px 24px;
+    text-decoration: none;
+    border: 1px;
+    background: $color;
+    color: #fff;
+    box-shadow: 0px 2px 4px #575;
+    transition: box-shadow .3s;
+    &:hover{
+      box-shadow: 0px 4px 8px #575;
+    }
+}

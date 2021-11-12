@@ -1,0 +1,50 @@
+@charset "utf-8";
+@import "mixin";
+
+.header{
+  height: 80px;
+  width: 100%;
+  background: #a7ff83;
+  opacity: 0.8;
+  top: 0;
+  z-index: 100;
+    &__wrapper{
+      @include width;
+      @include flex_between;
+      align-items: center;
+      line-height: 60px;
+      padding: 10px 0;
+      &__logo{
+      }
+      &__nav__ul{
+        list-style: none;
+        display: flex;
+        &__li_state_current{
+          text-decoration: none;
+          color: #333;
+          padding: 0 20px;
+          display: block;
+          position: relative;
+          &::before,&::after{
+              content: "";
+              background: #333;
+              display: block;
+              width: 0px;
+              height: 2px;
+              position: absolute;
+              top: 100%;
+              transition: .5s;
+          }
+          &::before{
+              left: 50%;
+          }
+          &::after{
+              right: 50%;
+          }
+          &:hover::before,&:hover::after{
+              width: 50px;
+          }
+        }
+      }
+    }
+  }

@@ -1,3 +1,23 @@
-<footer>
-<%= link_to 'about', about_path %>
+<footer class="footer">
+  <div class="footer__wrap">
+    <nav class="footer__wrap__nav">
+      <ul class="footer__wrap__nav__ul">
+        <li class="footer__wrap__nav__ul__li">
+          <%= link_to 'about', about_path, class:"footer__wrap__nav__ul__li_state_current" %>
+        </li>
+        <li class="footer__wrap__nav__ul__li">
+          <%= link_to '利用規約', about_path, class:"footer__wrap__nav__ul__li_state_current" %>
+        </li>
+        <li class="footer__wrap__nav__ul__li">
+          <%= link_to 'サンプル2', about_path, class:"footer__wrap__nav__ul__li_state_current" %>
+        </li>
+        <li class="footer__wrap__nav__ul__li">
+          <%= link_to 'サンプル3', about_path, class:"footer__wrap__nav__ul__li_state_current" %>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer__copyright">
+    <p><small>@samplecopyright</small></p>
+  </div>
 </footer>

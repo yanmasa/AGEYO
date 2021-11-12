@@ -13,3 +13,29 @@
  *= require_tree .
  *= require_self
  */
+
+@import "reset";
+
+h1 {
+  font-size: 200%;
+}
+
+h2{
+  font-size : 106%;
+  color: #364e96;/*文字色*/
+  border: solid 3px #364e96;/*線色*/
+  padding: 0.5em;/*文字周りの余白*/
+  border-radius: 0.5em;/*角丸*/
+}
+
+h3{
+  font-size : 100%;
+  color : #0000ff;
+}
+h4, h5, h6{
+  font-size : 100%;
+  color : #000000;
+}
+
+@import "homes";
+

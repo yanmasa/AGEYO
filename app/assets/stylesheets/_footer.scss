@@ -1,0 +1,35 @@
+@charset "utf-8";
+@import "mixin";
+
+.footer{
+  background: #17b978;
+  color: #fff;
+  &__wrap{
+    @include width;
+    padding: 50px 0 50px 0;
+    &__nav{
+      width: 100%;
+      &__ul{
+        @include flex_align_center;
+        flex-wrap: wrap;
+        &__li{
+          width: 20%;
+          &_state_current{
+            font-size: 14px;
+            color: #fff;
+            text-decoration: none;
+            padding-left: 20px;
+            transition: .4s;
+            &:hover{
+              background-position: center left 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+  &__copyright{
+      text-align: center;
+      padding: 5px;
+  }
+}
