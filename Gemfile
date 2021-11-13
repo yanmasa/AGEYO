@@ -67,10 +67,14 @@ group :production do
 end
 
 gem 'devise'
+gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
+gem 'font-awesome-sass', '~> 5.13'
 gem 'kaminari'
 gem 'enum_help'
-gem 'font-awesome-sass'
+gem 'rails-i18n', '~> 5.1'
+gem 'devise-i18n'
+
 
 gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 gem 'refile-mini_magick'

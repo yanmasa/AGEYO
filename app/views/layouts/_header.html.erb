@@ -1,16 +1,47 @@
-<header>
-  <%= link_to 'AGEYO', root_path %>
-  <% if contributor_signed_in? %>
-  <%= link_to 'マイページ', contributor_contributors_path %>
-  <%= link_to '投稿一覧', posts_path %>
-  <%= link_to '新規投稿', new_contributor_post_path %>
-  <%= link_to 'ログアウト', destroy_contributor_session_path, method: :delete %>
-  <% elsif recipient_signed_in? %>
-  <%= link_to 'マイページ', recipient_path(current_recipient) %>
-  <%= link_to 'フォロー一覧', recipient_follows_path(current_recipient) %>
-  <%= link_to '投稿一覧', posts_path %>
-  <%= link_to 'ログアウト', destroy_recipient_session_path, method: :delete %>
-  <% else %>
-  <% link_to 'ログイン', root_path %>
-  <% end %>
+<header class="shadow-sm header-color">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <%= link_to root_path(class:"navbar-brand p-3") do %>
+        <%= image_tag('logo.png') %>
+      <% end %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <% if contributor_signed_in? %>
+            <li class="nav-item">
+              <%= link_to 'マイページ', contributor_contributors_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '投稿一覧', posts_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '新規投稿', new_contributor_post_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'ログアウト', destroy_contributor_session_path, method: :delete, class: 'nav-link text-white' %>
+            </li>
+          <% elsif recipient_signed_in? %>
+            <li class="nav-item">
+              <%= link_to 'マイページ', recipient_path(current_recipient), class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'フォロー一覧', recipient_follows_path(current_recipient), class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '投稿一覧', posts_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'ログアウト', destroy_recipient_session_path, method: :delete, class: 'nav-link text-white' %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'ログイン', root_path, class: 'nav-link text-white' %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </header>
