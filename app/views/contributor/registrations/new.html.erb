@@ -1,59 +1,65 @@
-<h2>Sign up</h2>
+<div class="overflow">
+  <div class="mt-5">
+    <span class="fs-3 offset-md-1 bg-light signup-form"><b>新規登録(寄付をする方)</b></span>
+  </div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "contributor/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="row mt-3">
+    <%= f.label :email, class:"offset-1 col-2" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-3" %>
   </div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="row mt-3">
+    <%= f.label :name, class:"offset-1 col-2" %><br />
+    <%= f.text_field :name, class:"col-3" %>
   </div>
 
-  <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname %>
+  <div class="row mt-3">
+    <%= f.label :nickname, class:"offset-1 col-2" %><br />
+    <%= f.text_field :nickname, class:"col-3" %>
   </div>
 
-  <div class="field">
-    <%= f.label :organization_name %><br />
-    <%= f.text_field :organization_name %>
+  <div class="row mt-3">
+    <%= f.label :organization_name, class:"offset-1 col-2" %><br />
+    <%= f.text_field :organization_name, class:"col-3" %>
   </div>
 
-  <div class="field">
-    <%= f.label :organization_url %><br />
-    <%= f.text_field :organization_url %>
+  <div class="row mt-3">
+    <%= f.label :organization_url, class:"offset-1 col-2" %><br />
+    <%= f.text_field :organization_url, class:"col-3" %>
   </div>
 
-  <div class="field">
-    <%= f.label :profile_image %><br />
-    <%= f.attachment_field :profile_image %>
+  <div class="row mt-3">
+    <%= f.label :profile_image, class:"offset-1 col-2" %><br />
+    <%= f.attachment_field :profile_image, class:"col-3" %>
   </div>
 
-  <div class="field">
-    <%= f.label :introduction %><br />
-    <%= f.text_field :introduction %>
+  <div class="row mt-3">
+    <%= f.label :introduction, class:"offset-1 col-2" %><br />
+    <%= f.text_area :introduction, class:"col-3" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  <div class="row mt-3">
+    <%= f.label :password, class:"offset-1 col-2" %>
+    <%= f.password_field :password, autocomplete: "new-password",placeholder: @minimum_password_length.to_s+"文字以上", class:"col-2" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="row mt-3">
+    <%= f.label :password_confirmation, class:"offset-1 col-2" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"col-2" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="actions offset-3 mt-3 mb-4">
+    <td></td><td></td><%= f.submit "Sign up", class:"btn btn-success btn-lg" %>
   </div>
 <% end %>
-
-<%= render "contributor/shared/links" %>
+  <div class="mt-5">
+    <span class="fs-3 offset-md-1 bg-light"><b>既に登録済の方</b></span>
+  </div>
+  <div class="offset-1 mt-3 mb-4">
+    <%= render "contributor/shared/links" %>
+  </div>
+</div>
+</div>

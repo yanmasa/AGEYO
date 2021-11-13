@@ -1,26 +1,35 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="overflow">
+<div class="mt-5">
+    <span class="fs-3 offset-md-1 bg-light signup-form"><b>ログイン(寄付をする方)</b></span>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="row mt-3">
+    <%= f.label :email, class:"offset-1 col-2" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-3" %>
   </div>
-
+  
+  <div class="row mt-3">
+    <%= f.label :password, class:"offset-1 col-2" %><br />
+    <%= f.password_field :password, autocomplete: "current-password", class:"col-3" %>
+  </div>
+  
   <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="row mt-3">
+      <%= f.check_box :remember_me, class:"offset-3 mt-1" %>
+      <%= f.label :remember_me, class:"ml-2" %>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  
+  <div class="actions offset-3 mt-3 mb-4">
+    <td></td><td></td><%= f.submit "Log in", class:"btn btn-success btn-lg" %>
   </div>
-<% end %>
-
-<%= render "contributor/shared/links" %>
+  
+  <% end %>
+  <div class="mt-5">
+    <span class="fs-3 offset-md-1 bg-light"><b>未登録の方</b></span>
+  </div>
+  <div class="offset-1 mt-3 mb-4">
+    <%= render "contributor/shared/links" %>
+</div>
+</div>

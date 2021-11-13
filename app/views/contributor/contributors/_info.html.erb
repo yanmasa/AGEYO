@@ -1,0 +1,41 @@
+<table class="table">
+  <tbody>
+    <tr><%= attachment_image_tag contributor, :profile_image, :fill, 125, 125, format: 'jpg',fallback: "no_imageuser.jpg", size:'125x125' %></tr>
+    <tr>
+      <th class="fixed-th">名前</th>
+      <th><%= contributor.name %></th>
+    </tr>
+    <tr>
+      <th class="fixed-th">表示名</th>
+      <th><%= contributor.nickname %></th>
+    </tr>
+    <tr>
+      <th class="fixed-th">団体名</th>
+      <th>
+        <% if contributor.organization_url %>
+          <%= link_to contributor.organization_name, contributor.organization_url, target: :_blank, rel: "noopener noreferrer" %>
+        <% else %>
+          <%= contributor.organization_name %>
+        <% end %>
+      </th>
+    </tr>
+    <tr>
+      <th class="fixed-th">フォロワー</th>
+      <th>
+        <%= link_to contributor_followers_path(contributor) do %>
+          <%= contributor.relationships.count %>人
+        <% end %>
+      </th>
+    </tr>
+    <tr>
+      <th class="fixed-th">自己紹介</th>
+      <th><%= contributor.introduction %></th>
+    </tr>
+  </tbody>
+</table>
+<div class="row">
+  <%= link_to "", edit_contributor_contributors_path, class:"btn btn-outline-secondary btn-block fas fa-user-cog w-25" %>
+</div>
+<div class="row">
+  <%= link_to 'My投稿一覧', contributor_posts_path ,class: "m-3" %>
+</div>

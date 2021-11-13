@@ -35,6 +35,15 @@ class Contributor::PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    if @post.destroy
+      redirect_to contributor_posts_path
+    else
+      render :show
+    end
+  end
+
   private
   def post_params
     params.require(:post).permit(:title,:post_genre_id, :content, :post_image, :status, :prefecture)

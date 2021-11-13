@@ -1,37 +1,40 @@
-<div><%= attachment_image_tag @contributor, :profile_image, :fill, 100, 100, format: 'jpg' %></div>
-<div><%= @contributor.name %></div>
-<div><%= @contributor.nickname %></div>
-<% if @contributor.organization_url %>
-  <div><%= link_to @contributor.organization_name, @contributor.organization_url %></div>
-<% else %>
-  <div><%= @contributor.organization_name %></div>
-<% end %>
-<div><%= @contributor.introduction %></div>
-
-<%= link_to '編集', edit_contributor_contributors_path %>
-
-<%= link_to 'My投稿一覧', contributor_posts_path %>
-
-<%= link_to contributor_followers_path(@contributor) do %>
-<p>フォロワー数:<%= @contributor.relationships.count %>人</p>
-<% end %>
-<div>
-  <p>やり取り中のチャット一覧</p>
-  <% n = 0 %>
-  <% @posts.each do |post| %>
-    <% @rooms = post.rooms %>
-    <% if @rooms %>
-      <% @rooms.each do |room| %>
-        <% n = 1 %>
-        <%= link_to room_path(room) do %>
-          <%= post.title %>
+<div class="container px-3 px-sm-0">
+  <div class="row">
+    <div class="col-md-6">
+      <%= render 'info', contributor: @contributor %>
+    </div>
+    <div class="col-md-5 offset-md-1 mt-5">
+      <div>
+        <h4>やり取り中のチャット一覧</h4>
+<!--chat_status:trueのroom一覧の表示-->
+        <% n = 0 %>
+        <table>
+          <tbody>
+            <% @posts.each do |post| %>
+              <% @rooms = post.rooms %>
+              <% if @rooms %>
+                <% @rooms.each do |room| %>
+                  <% if room.chat_status %>
+                    <% n = 1 %>
+                    <tr>
+                      <th>名前:<%= room.recipient.name %> |</th>
+                      <th>
+                        タイトル:
+                        <%= link_to room_path(room) do %>
+                          <%= post.title %>
+                        <% end %>
+                      </th>
+                    </tr>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        <% unless n == 1 %>
+          <p>現在、やり取り中のチャットはございません。</p>
         <% end %>
-      <% end %>
-    <% end %>
-  <% end %>
-  <% unless n == 1 %>
-    <p>現在、やり取り中のチャットはございません。</p>
-  <% end %>
-
+      </div>
+    </div>
+  </div>
 </div>
-
