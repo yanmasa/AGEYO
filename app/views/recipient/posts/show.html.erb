@@ -1,0 +1,42 @@
+<div>
+  <%= @post.updated_at.to_s(:datetime_jp) %>
+</div>
+<div>
+  <%= link_to @contributor.nickname, contributor_path(@contributor) %>
+</div>
+<div>
+  <%= attachment_image_tag @post, :post_image, :fill, 100, 100, format: 'jpg' %>
+</div>
+<div>
+  <%= @post.title %>
+</div>
+<div>
+  <%= @post.content %>
+</div>
+<div>
+  <%= @post.prefecture %>
+</div>
+
+<div>ストック中のユーザー数:<%= @post.favorites.count %>人</div>
+<div>リクエスト中のユーザー数:<%= @post.requests.count %>人</div>
+
+<% if recipient_signed_in? %>
+<div>
+  <% if @post.favorited_by?(@recipient) %>
+    <%= link_to post_favorites_path(@post), method: :delete do %>
+      <p>ストックを外す</p>
+    <% end %>
+  <% else %>
+    <%= link_to post_favorites_path(@post), method: :post do %>
+      <p>ストック</p>
+    <% end %>
+  <% end %>
+</div>
+<div>
+  <% if @post.requested_by?(@recipient) %>
+    <p>現在、リクエスト中です。</p>
+  <% else %>
+  　<%= link_to 'リクエストを送る',post_requests_path(@post), method: :post, data: { confirm: "【確認】リクエストは取り消せません。\n本当にリクエストしますか？" } %>
+  <% end %>
+</div>
+<% end %>

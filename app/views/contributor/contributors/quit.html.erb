@@ -1,0 +1,9 @@
+<p>こちらは寄付者の退会画面です。</p>
+<p>＊寄付を受け取る方の退会はお問い合わせフォームでお願いします。</p>
+
+<p>退会すると、このアカウントにはアクセスできなくなります。</p>
+<p>退会しますか？</p>
+<div>
+  <%= link_to '退会しない', contributor_contributors_path %>
+  <%= link_to '退会する', out_contributor_contributors_path, method: :patch, data: { confirm: "【確認】本当に退会しますか？" } %>
+</div>

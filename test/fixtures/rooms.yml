@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  recipient: one
+  post: one
+  chat_status: false
+
+two:
+  recipient: two
+  post: two
+  chat_status: false

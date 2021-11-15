@@ -1,0 +1,35 @@
+<div class="container px-3 px-sm-0">
+  <div class="row">
+    <div class="col-md-4">
+      <h4 class="mt-5">リクエストされた投稿</h4>
+        <% n = 0 %>
+        <table>
+          <tbody>
+            <% @posts.each do |post| %>
+              <% if post.status == "公開" %>
+                <% @requests = post.requests %>
+                <% if @requests %>
+                  <% @requests.each do |request| %>
+                    <% @post= request.post %>
+                      <% n = 1 %>
+                      <tr>
+                        <th>タイトル:<%= link_to @post.title , contributor_post_path(@post) %>　|　</th>
+                        <th>
+                          ユーザー:<%= Recipient.find(request.recipient_id).name %>
+                        </th>
+                      </tr>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        <% unless n == 1 %>
+          <p>現在、リクエストはございません。</p>
+        <% end %>
+    </div>
+    <div class="col-md-8 of">
+      <%= render 'index', posts: @posts %>
+    </div>
+  </div>
+</div>

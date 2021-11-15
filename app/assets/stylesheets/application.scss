@@ -13,3 +13,31 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+* {
+  font-family: Noto Sans JP,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Liberation Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;  /* フォントを指定 */
+}
+
+.logo{
+  height: 20px;
+  width: auto;
+}
+
+.overflow{
+  overflow-x: hidden;
+}
+
+.header-color{
+  background: #857671;
+}
+
+.main-color{
+  background: #fff;
+}
+
+.footer-color{
+  background: #4e413b;
+}

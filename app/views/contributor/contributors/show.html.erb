@@ -1,0 +1,40 @@
+<div class="container px-3 px-sm-0">
+  <div class="row">
+    <div class="col-md-6">
+      <%= render 'info', contributor: @contributor %>
+    </div>
+    <div class="col-md-5 offset-md-1 mt-5">
+      <div>
+        <h4>やり取り中のチャット一覧</h4>
+<!--chat_status:trueのroom一覧の表示-->
+        <% n = 0 %>
+        <table>
+          <tbody>
+            <% @posts.each do |post| %>
+              <% @rooms = post.rooms %>
+              <% if @rooms %>
+                <% @rooms.each do |room| %>
+                  <% if room.chat_status %>
+                    <% n = 1 %>
+                    <tr>
+                      <th>名前:<%= room.recipient.name %> |</th>
+                      <th>
+                        タイトル:
+                        <%= link_to room_path(room) do %>
+                          <%= post.title %>
+                        <% end %>
+                      </th>
+                    </tr>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        <% unless n == 1 %>
+          <p>現在、やり取り中のチャットはございません。</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

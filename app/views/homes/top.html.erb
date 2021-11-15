@@ -1,11 +1,17 @@
-<h1>こちらはトップページです</h1>
+<div class="jumbotron jumbotron-extend mb-0">
+    <div class="container-fluid jumbotron-container">
+        <h1 class="site-name">寄付をする、してもらうためのWebサイト</h1>
 
-<p>寄付をする方</p>
-<%= link_to "ログインはこちら", new_recipient_session_path %>
+        <% unless contributor_signed_in? || recipient_signed_in? %>
+        <p>寄付を必要とする方</p>
+        <%= link_to "ログインはこちら", new_recipient_session_path,class:"btn btn-black" %>
 
-<%= link_to "新規登録はこちら", root_path%>
+        <%= link_to "新規登録はこちら", root_path,class:"btn btn-black" %>
 
-<p>寄付を必要とする方</p>
-<%= link_to "ログインはこちら", new_contributor_session_path %>
+        <p class="mt-5">寄付をする方</p>
+        <%= link_to "ログインはこちら", new_contributor_session_path,class:"btn btn-black" %>
 
-<%= link_to "新規登録はこちら", new_contributor_registration_path %>
+        <%= link_to "新規登録はこちら", new_contributor_registration_path,class:"btn btn-black" %>
+        <% end %>
+    </div>
+</div>
