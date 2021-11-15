@@ -1,7 +1,8 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-7">
       <table class="table table-hover table-inverse">
+        <tbody>
         <tr>
           <th class="post-th">タイトル</th>
           <td><%= @post.title %></td>
@@ -16,7 +17,7 @@
         </tr>
         <tr>
           <th class="post-th">画像</th>
-          <td><%= attachment_image_tag @post, :post_image, :fill, 125, 125, format: 'jpg',fallback: "noImage.jpg", size:'125x125' %></td>
+          <td><%= attachment_image_tag @post, :post_image, :fill, 125, 125, format: 'jpg',fallback: "noImage.png", size:'125x125' %></td>
         </tr>
         <tr>
           <th class="post-th">ステータス</th>
@@ -34,35 +35,50 @@
           <th class="post-th">リクエスト中のユーザー数</th>
           <td><%= @post.requests.count %>人</td>
         </tr>
-        <tr>
-          <td><%= link_to '編集', edit_contributor_post_path %></td>
-        </tr>
+        </tbody>
       </table>
-      </div>
-    <div class="col-md-3 offset-md-1">
-      <div>
-        <div>
-        <% @recipients.each do |recipient| %>
-          <div>
-            <%= recipient.name %>
-          </div>
-          <div>
-            <%= recipient.organization_name %>
-          </div>
-          <div>
-            <% if @post.created_rooms?(recipient) %>
-              <%= link_to 'チャットルームへ', room_path(@post.rooms.find_by(recipient_id: recipient.id)) %>
-            <% else %>
-              <%= form_with model: @room, url: rooms_path, method: :post, local: true do |f| %>
-                <%= f.hidden_field :post_id, value: @post.id %>
-                <%= f.hidden_field :recipient_id, value: recipient.id %>
-                <%= f.submit 'チャットルームを作る' %>
-              <% end %>
-            <% end %>
-          </div>
-        <% end %>
+        <div class="row">
+          <div class="col-2"><%= link_to '編集', edit_contributor_post_path, class:"btn btn-primary btn-block" %></div>
+          <% unless @post.rooms.exists? %>
+          <div class="col-2"><%= link_to '削除', contributor_post_path(@post), method: :delete, data: { confirm: "【確認】投稿を削除してもよろしいですか？" }, class:"btn btn-danger btn-block " %></div>
+          <% end %>
         </div>
+      <div class="row">
+        <%= link_to 'My投稿一覧へ戻る', contributor_posts_path ,class: "m-3" %>
       </div>
+      </div>
+    <div class="col-md-4 offset-md-1">
+      <h4 class="mt-5">リクエストユーザー一覧</h4>
+      <% if @post.rooms.exists? %>
+        <table>
+          <thead>
+            <td class="w-25">名前</td>
+            <td class="w-25">団体名</td>
+            <tdclass="w-50"> </td>
+          </thead>
+          <tbody>
+            <% @recipients.each do |recipient| %>
+              <tr>
+                <th><%= recipient.name %></th>
+                <th><%= recipient.organization_name %></th>
+                <th>
+                  <% if @post.created_rooms?(recipient) %>
+                    <%= link_to 'チャットルームへ', room_path(@post.rooms.find_by(recipient_id: recipient.id)),class:"btn btn-outline-secondary btn-block" %>
+                  <% else %>
+                    <%= form_with model: @room, url: rooms_path, method: :post, local: true do |f| %>
+                      <%= f.hidden_field :post_id, value: @post.id %>
+                      <%= f.hidden_field :recipient_id, value: recipient.id %>
+                      <%= f.submit 'チャットルームを作る', class:"btn btn-outline-secondary btn-block" %>
+                    <% end %>
+                  <% end %>
+                </th>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>リクエスト中のユーザはおりません。</p>
+      <% end %>
     </div>
   </div>
 </div>

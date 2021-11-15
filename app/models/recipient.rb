@@ -6,6 +6,7 @@ class Recipient < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :stocks, through: :favorites, source: :post
   has_many :requests, dependent: :destroy
+  has_many :askings, through: :requests, source: :post
   has_many :relationships, dependent: :destroy
   has_many :followings, through: :relationships, source: :contributor
   has_many :rooms

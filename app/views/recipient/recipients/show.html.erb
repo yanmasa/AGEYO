@@ -1,28 +1,49 @@
-<div>
-<%= @recipient.name %>
-</div>
-<div>
-<% if @recipient.organization_url %>
-<%= link_to @recipient.organization_name, @recipient.organization_url %>
-<% else %>
-<%= @recipient.organization_name %>
-<% end %>
-</div>
-<div>
-<%= link_to '編集', edit_recipient_path(@recipient) %>
-</div>
-<div>
-  <%= link_to 'ストック一覧', recipient_favorites_path(@recipient) %>
-</div>
-<div>
-  <p>やり取り中のチャット一覧</p>
-  <% if @rooms %>
-    <% @rooms.each do |room| %>
-      <%= link_to room_path(room) do %>
-        <%= Post.find(room.post_id).title %>
+<div class="container px-3 px-sm-0 mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table">
+        <tr>
+          <th>name</th>
+          <td><%= @recipient.name %>
+        </tr>
+        <tr>
+          <th>団体名</th>
+        <% if @recipient.organization_url %>
+        <td><%= link_to @recipient.organization_name, @recipient.organization_url %>
+        <% else %>
+        <td><%= @recipient.organization_name %>
+        <% end %>
+        </tr>
+      </table>
+      <% if recipient_signed_in? %>
+        <div class="row">
+        <%= link_to '編集', edit_recipient_path(@recipient), class:"btn btn-outline-secondary btn-block fas fa-user-cog w-25" %>
+        </div>
+        <div class="row">
+          <%= link_to 'ストック一覧', recipient_favorites_path(@recipient),class: "m-3" %>
+        </div>
       <% end %>
-    <% end %>
-  <% else %>
-    <p>現在、やり取り中のチャットはございません。</p>
-  <% end %>
+    </div>
+    <div div class="col-md-4 offset-md-1">
+      <h4>やり取り中のチャット一覧</h4>
+      <table>
+        <tbody>
+          <% if @rooms %>
+            <% @rooms.each do |room| %>
+              <tr>
+                <th>名前：<%= link_to Post.find(room.post_id).contributor.nickname, contributor_path(Post.find(room.post_id).contributor) %>　　</th>
+                <th>チャット先：
+                  <%= link_to room_path(room) do %>
+                    <%= Post.find(room.post_id).title %>
+                  <% end %>
+                </th>
+              </tr>
+            <% end %>
+          <% else %>
+            <p>現在、やり取り中のチャットはございません。</p>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
