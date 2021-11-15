@@ -1,0 +1,27 @@
+        <div class="form-group">
+          <%= f.label :title %><br>
+          <%= f.text_field :title, autofocus: true, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :post_genre_id %><br>
+          <%= f.collection_select :post_genre_id, PostGenre.all, :id, :name, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :content %><br>
+          <%= f.text_area :content, size: "1x20", class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :post_image %><br>
+          <%= f.attachment_field :post_image %>
+        </div>
+        <div class="form-group">
+          <%= f.label :status %><br>
+          <%= f.select :status, Post.statuses.keys, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :prefecture %><br>
+          <%= f.select :prefecture, Post.prefectures.keys, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.submit '保存', class: "btn btn-success" %>
+        </div>

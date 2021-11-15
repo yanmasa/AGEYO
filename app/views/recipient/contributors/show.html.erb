@@ -9,7 +9,7 @@
 <div><%= @contributor.introduction %></div>
 
 <p>フォロワー数:<%= @contributor.relationships.count %>人</p>
-
+<% if recipient_signed_in? %>
 <div>
   <% if @recipient.following?(@contributor) %>
     <%= link_to contributor_relationships_path(@contributor), method: :delete do %>
@@ -21,6 +21,7 @@
     <% end %>
   <% end %>
 </div>
+<% end %>
 
 <div>
 <% @posts.each do |post| %>

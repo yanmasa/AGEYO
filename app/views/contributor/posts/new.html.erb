@@ -1,32 +1,9 @@
-<div>
-<%= form_with model: @post, url: contributor_posts_path, method: :post, local: true do |f| %>
-<div>
-  <%= f.label :title %>
-  <%= f.text_field :title, autofocus: true %>
-</div>
-
-<div>
-  <%= f.label :post_genre_id %>
-  <%= f.collection_select :post_genre_id, PostGenre.all, :id, :name %>
-</div>
-<div>
-  <%= f.label :content %>
-  <%= f.text_area :content %>
-</div>
-<div>
-  <%= f.label :post_image %>
-  <%= f.attachment_field :post_image %>
-</div>
-<div>
-  <%= f.label :states %>
-  <%= f.select :status, Post.statuses.keys %>
-</div>
-<div>
-  <%= f.label :prefecture %>
-  <%= f.select :prefecture, Post.prefectures.keys %>
-</div>
-<div>
-  <%= f.submit '保存' %>
-</div>
-<% end %>
+<div class="container">
+  <div class ="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <%= form_with model: @post, url: contributor_posts_path, method: :post, local: true do |form| %>
+        <%= render 'form' ,f: form %>
+      <% end %>
+    </div>
+  </div>
 </div>
