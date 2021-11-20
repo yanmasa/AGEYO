@@ -1,7 +1,0 @@
-ja:
-  enums: 
-    contact: # モデル名
-      subject: # カラム名
-        registration: '登録希望' # enumの値
-        withdrawal: '退会希望' # enumの値
-        others: 'その他' # enumの値

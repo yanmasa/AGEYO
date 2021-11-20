@@ -41,3 +41,18 @@
 .footer-color{
   background: #4e413b;
 }
+
+#notice {
+  color: green;
+}
+
+#error_explanation {
+  color: red;
+}
+
+.field_with_errors {
+  display: contents;
+  input {
+    border-color: red;
+  }
+}

@@ -8,4 +8,6 @@ class Contributor < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   attachment :profile_image
+
+  validates :name, :nickname, presence: true
 end
