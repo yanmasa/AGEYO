@@ -2,16 +2,23 @@ ja:
   activerecord:
     models:
       post: 投稿
+      contact: お問い合わせ
     # model毎に定義したいattributesを記述
     attributes:
         post:
-          id: ID
           title: タイトル
           post_genre_id: ジャンル
           content: 内容
           post_image: 投稿画像
           status: ステータス
           prefecture: 対象地域
+        contact:
+          name: 名前
+          organization_name: 団体(会社)名
+          email: メールアドレス
+          phone_number: 電話番号(ハイフンなし)
+          subject: 件名
+          content: お問い合わせ内容
   # 全てのmodelで共通して使用するattributesを定義
   attributes:
     created_at: 作成日

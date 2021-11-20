@@ -1,3 +1,3 @@
 class Contact < ApplicationRecord
-  enum subject: { registration: 0, withdrawal: 1, others: 2 }
+  enum subject: { 新規登録希望: 0, 退会希望: 1, その他: 2 }
 end
