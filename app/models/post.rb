@@ -6,6 +6,11 @@ class Post < ApplicationRecord
   has_many :requesters, through: :requests, source: :recipient
   has_many :rooms
   attachment :post_image
+
+  validates :contributor_id, :post_genre_id, :title, :status, :prefecture, presence: true
+  
+
+
   enum prefecture: {
     指定地域なし:1,
     北海道:2,青森県:3,岩手県:4,宮城県:5,秋田県:6,山形県:7,福島県:8,
@@ -29,7 +34,7 @@ class Post < ApplicationRecord
   def requested_by?(recipient)
     requests.where(recipient_id: recipient.id).exists?
   end
-  
+
   def created_rooms?(recipient)
     rooms.where(recipient_id: recipient.id).exists?
   end

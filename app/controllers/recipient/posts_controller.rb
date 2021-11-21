@@ -1,6 +1,6 @@
 class Recipient::PostsController < ApplicationController
   def index
-    @posts = Post.where(status: '公開')
+    @posts = Post.where(status: '公開').order(params[:sort])
   end
 
   def show
