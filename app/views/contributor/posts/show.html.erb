@@ -9,7 +9,7 @@
         </tr>
         <tr>
           <th class="post-th">ジャンル</th>
-          <td><%= @genres.find_by(id: @post.post_genre_id).name %></td>
+          <td><%= @post.genre %></td>
         </tr>
         <tr>
           <th class="post-th">内容</th>

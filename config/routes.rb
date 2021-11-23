@@ -32,6 +32,9 @@ Rails.application.routes.draw do
     resources :posts do
       resource :favorites, only: [:create, :destroy]
       resource :requests, only: [:create]
+      collection do
+        get 'search'
+      end
     end
     resources :contributors do
       resource :relationships, only: [:create, :destroy]

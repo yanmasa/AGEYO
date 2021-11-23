@@ -6,13 +6,14 @@ class Contributor::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.contributor_id = current_contributor.id
-    @post.save
-    redirect_to contributor_post_path(@post.id)
+    if @post.save
+      redirect_to contributor_post_path(@post.id)
+    else
+      render :new
   end
 
   def show
     @post = Post.find(params[:id])
-    @genres = PostGenre.all
     @recipients = @post.requesters
     @room = Room.new
   end
@@ -46,7 +47,7 @@ class Contributor::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title,:post_genre_id, :content, :post_image, :status, :prefecture)
+    params.require(:post).permit(:title, :genre, :content, :post_image, :status, :prefecture)
   end
 
 end
