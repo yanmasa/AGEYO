@@ -1,15 +1,12 @@
 class Post < ApplicationRecord
   belongs_to :contributor
-  belongs_to :post_genre
   has_many :favorites, dependent: :destroy
   has_many :requests, dependent: :destroy
   has_many :requesters, through: :requests, source: :recipient
   has_many :rooms
   attachment :post_image
 
-  validates :contributor_id, :post_genre_id, :title, :status, :prefecture, presence: true
-  
-
+  validates :contributor_id, :genre, :title, :status, :prefecture, presence: true
 
   enum prefecture: {
     指定地域なし:1,
@@ -27,6 +24,10 @@ class Post < ApplicationRecord
     非公開:1, 公開:2,決定済み:3
   }
 
+  enum genre: {
+    指定なし:1, 寄付:2, 活動:3
+  }
+
   def favorited_by?(recipient)
     favorites.where(recipient_id: recipient.id).exists?
   end
@@ -37,5 +38,24 @@ class Post < ApplicationRecord
 
   def created_rooms?(recipient)
     rooms.where(recipient_id: recipient.id).exists?
+  end
+
+  def self.search(p_title, p_prefecture, p_genre)
+    posts = Post.where(status: '公開')
+    if p_title.present?
+      posts =  posts.where('title LIKE?', "%#{p_title}%")
+    else
+      posts
+    end
+    if p_genre == '1'
+      posts
+    else
+      posts =  posts.where(genre: [p_genre, 1])
+    end
+    if p_prefecture == '1'
+      posts
+    else
+      posts =  posts.where(prefecture: [p_prefecture, 1])
+    end
   end
 end

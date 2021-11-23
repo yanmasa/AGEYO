@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_09_104456) do
+ActiveRecord::Schema.define(version: 2021_11_22_041735) do
 
   create_table "contacts", force: :cascade do |t|
     t.string "name", null: false
@@ -60,20 +60,14 @@ ActiveRecord::Schema.define(version: 2021_11_09_104456) do
     t.index ["room_id"], name: "index_messages_on_room_id"
   end
 
-  create_table "post_genres", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "posts", force: :cascade do |t|
     t.integer "contributor_id", null: false
-    t.integer "post_genre_id", null: false
+    t.integer "genre", default: 1, null: false
     t.string "title", null: false
     t.text "content", null: false
     t.text "post_image_id"
-    t.integer "status", default: 0, null: false
-    t.integer "prefecture", default: 0, null: false
+    t.integer "status", default: 1, null: false
+    t.integer "prefecture", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
