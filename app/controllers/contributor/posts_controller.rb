@@ -21,7 +21,7 @@ class Contributor::PostsController < ApplicationController
 
   def index
     @contributor = current_contributor
-    @posts = @contributor.posts.all.page(params[:page]).per(15)
+    @posts = @contributor.posts.all.order(updated_at: :desc).page(params[:page]).per(15)
   end
 
   def edit
@@ -44,6 +44,11 @@ class Contributor::PostsController < ApplicationController
     else
       render :show
     end
+  end
+
+    def search
+    @posts = current_contributor.posts.all.search_contributor_post(params[:title], params[:prefecture], params[:genre],params[:status]).page(params[:page]).per(15)
+    render :index
   end
 
   private

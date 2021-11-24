@@ -10,7 +10,7 @@ class Recipient::PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.search(params[:name],params[:title], params[:prefecture], params[:genre]).page(params[:page]).per(15)
+    @posts = Post.search(params[:name],params[:title], params[:prefecture], params[:genre]).order(updated_at: :desc).page(params[:page]).per(15)
     render :index
   end
 end

@@ -46,10 +46,28 @@ class Post < ApplicationRecord
       posts = posts.includes(:contributor).joins(:contributor).where('nickname LIKE?', "%#{name}%")
     end
     if title.present?
-      posts =  posts.where('title LIKE?', "%#{title}%")
+      posts = posts.where('title LIKE?', "%#{title}%")
     end
     if genre.present?
-      posts =  posts.where(genre: genre)
+      posts = posts.where(genre: genre)
+    end
+    if prefecture == '1'
+      posts
+    else
+      posts =  posts.where(prefecture: [prefecture, 1])
+    end
+  end
+
+  def self.search_contributor_post(title, prefecture, genre, status)
+    posts = self.order(updated_at: :desc)
+    if title.present?
+      posts = posts.where('title LIKE?', "%#{title}%")
+    end
+    if genre.present?
+      posts = posts.where(genre: genre)
+    end
+    if status.present?
+      posts = posts.where(status: status)
     end
     if prefecture == '1'
       posts

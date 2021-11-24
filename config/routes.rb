@@ -21,7 +21,11 @@ Rails.application.routes.draw do
         patch :out
       end
     end
-    resources :posts
+    resources :posts do
+      collection do
+        get 'search'
+      end
+    end
   end
 
   scope module: :recipient do

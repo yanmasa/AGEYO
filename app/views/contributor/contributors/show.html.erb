@@ -8,7 +8,13 @@
         <h4>やり取り中のチャット一覧</h4>
 <!--chat_status:trueのroom一覧の表示-->
         <% n = 0 %>
-        <table>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ルーム</th>
+              <th>名前</th>
+            </tr>
+          </thead>
           <tbody>
             <% @posts.each do |post| %>
               <% @rooms = post.rooms %>
@@ -17,13 +23,12 @@
                   <% if room.chat_status %>
                     <% n = 1 %>
                     <tr>
-                      <th>名前:<%= room.recipient.name %> |</th>
-                      <th>
-                        タイトル:
+                      <td>
                         <%= link_to room_path(room) do %>
                           <%= post.title %>
                         <% end %>
-                      </th>
+                      </td>
+                      <td><%= room.recipient.name %></td>
                     </tr>
                   <% end %>
                 <% end %>

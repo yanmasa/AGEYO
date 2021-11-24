@@ -3,38 +3,42 @@
     <div class="col-md-7">
       <table class="table table-hover table-inverse">
         <tbody>
-        <tr>
-          <th class="post-th">タイトル</th>
-          <td><%= @post.title %></td>
-        </tr>
-        <tr>
-          <th class="post-th">ジャンル</th>
-          <td><%= @post.genre %></td>
-        </tr>
-        <tr>
-          <th class="post-th">内容</th>
-          <td><%= @post.content %></td>
-        </tr>
-        <tr>
-          <th class="post-th">画像</th>
-          <td><%= attachment_image_tag @post, :post_image, :fill, 125, 125, format: 'jpg',fallback: "noImage.png", size:'125x125' %></td>
-        </tr>
-        <tr>
-          <th class="post-th">ステータス</th>
-          <td><%= @post.status %></td>
-        </tr>
-        <tr>
-          <th class="post-th">対象地域</th>
-          <td><%= @post.prefecture %></td>
-        </tr>
-        <tr>
-          <th class="post-th">ストック中のユーザー数</th>
-          <td><%= @post.favorites.count %>人</td>
-        </tr>
-        <tr>
-          <th class="post-th">リクエスト中のユーザー数</th>
-          <td><%= @post.requests.count %>人</td>
-        </tr>
+          <tr>
+            <th class="post-th">投稿・更新日</th>
+            <td><%= @post.updated_at.to_s(:datetime_jp) %></td>
+          </tr>
+          <tr>
+            <th class="post-th">タイトル</th>
+            <td><%= @post.title %></td>
+          </tr>
+          <tr>
+            <th class="post-th">ジャンル</th>
+            <td><%= @post.genre %></td>
+          </tr>
+          <tr>
+            <th class="post-th">内容</th>
+            <td><%= @post.content %></td>
+          </tr>
+          <tr>
+            <th class="post-th">画像</th>
+            <td><%= attachment_image_tag @post, :post_image, :fill, 125, 125, format: 'jpg',fallback: "noImage.png", size:'125x125' %></td>
+          </tr>
+          <tr>
+            <th class="post-th">ステータス</th>
+            <td><%= @post.status %></td>
+          </tr>
+          <tr>
+            <th class="post-th">対象地域</th>
+            <td><%= @post.prefecture %></td>
+          </tr>
+          <tr>
+            <th class="post-th">ストック中のユーザー数</th>
+            <td><%= @post.favorites.count %>人</td>
+          </tr>
+          <tr>
+            <th class="post-th">リクエスト中のユーザー数</th>
+            <td><%= @post.requests.count %>人</td>
+          </tr>
         </tbody>
       </table>
         <div class="row">
@@ -49,7 +53,7 @@
       </div>
     <div class="col-md-4 offset-md-1">
       <h4 class="mt-5">リクエストユーザー一覧</h4>
-      <% if @post.rooms.exists? %>
+      <% if @post.requests.present? %>
         <table>
           <thead>
             <td class="w-25">名前</td>
