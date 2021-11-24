@@ -10,6 +10,7 @@ class Contributor::PostsController < ApplicationController
       redirect_to contributor_post_path(@post.id)
     else
       render :new
+    end
   end
 
   def show
@@ -20,7 +21,7 @@ class Contributor::PostsController < ApplicationController
 
   def index
     @contributor = current_contributor
-    @posts = @contributor.posts.all
+    @posts = @contributor.posts.all.page(params[:page]).per(15)
   end
 
   def edit

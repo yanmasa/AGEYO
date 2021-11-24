@@ -25,7 +25,7 @@ class Post < ApplicationRecord
   }
 
   enum genre: {
-    指定なし:1, 寄付:2, 活動:3
+    その他:1, 寄付:2, 活動:3
   }
 
   def favorited_by?(recipient)
@@ -40,22 +40,21 @@ class Post < ApplicationRecord
     rooms.where(recipient_id: recipient.id).exists?
   end
 
-  def self.search(p_title, p_prefecture, p_genre)
-    posts = Post.where(status: '公開')
-    if p_title.present?
-      posts =  posts.where('title LIKE?', "%#{p_title}%")
-    else
-      posts
+  def self.search(name, title, prefecture, genre)
+    posts = Post.where(status: '公開').order(updated_at: :desc)
+    if name.present?
+      posts = posts.includes(:contributor).joins(:contributor).where('nickname LIKE?', "%#{name}%")
     end
-    if p_genre == '1'
-      posts
-    else
-      posts =  posts.where(genre: [p_genre, 1])
+    if title.present?
+      posts =  posts.where('title LIKE?', "%#{title}%")
     end
-    if p_prefecture == '1'
+    if genre.present?
+      posts =  posts.where(genre: genre)
+    end
+    if prefecture == '1'
       posts
     else
-      posts =  posts.where(prefecture: [p_prefecture, 1])
+      posts =  posts.where(prefecture: [prefecture, 1])
     end
   end
 end
