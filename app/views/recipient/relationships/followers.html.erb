@@ -18,7 +18,11 @@
                       <%= recipient.name %>
                     </td>
                     <td>
-                      <%= recipient.organization_name %>
+                      <% if recipient.organization_url %>
+                        <%= link_to recipient.organization_name, recipient.organization_url, target: :_blank, rel: "noopener noreferrer" %>
+                      <% else %>
+                        <%= recipient.organization_name %>
+                      <% end %>
                     </td>
                   </tr>
               <% end %>

@@ -1,35 +1,37 @@
 <table class="table">
   <tbody>
-    <tr><%= attachment_image_tag contributor, :profile_image, :fill, 125, 125, format: 'jpg',fallback: "no-imageuser.png", size:'125x125' %></tr>
+    <tr>
+      <th></th>
+      <%= attachment_image_tag contributor, :profile_image, :fill, 125, 125, format: 'jpg',fallback: "no-imageuser.png", size:'125x125' %></tr>
     <tr>
       <th class="fixed-th">名前</th>
-      <th><%= contributor.name %></th>
+      <td><%= contributor.name %></td>
     </tr>
     <tr>
       <th class="fixed-th">表示名</th>
-      <th><%= contributor.nickname %></th>
+      <td><%= contributor.nickname %></td>
     </tr>
     <tr>
       <th class="fixed-th">団体名</th>
-      <th>
+      <td>
         <% if contributor.organization_url %>
           <%= link_to contributor.organization_name, contributor.organization_url, target: :_blank, rel: "noopener noreferrer" %>
         <% else %>
           <%= contributor.organization_name %>
         <% end %>
-      </th>
+      </td>
     </tr>
     <tr>
       <th class="fixed-th">フォロワー</th>
-      <th>
+      <td>
         <%= link_to contributor_followers_path(contributor) do %>
           <%= contributor.relationships.count %>人
         <% end %>
-      </th>
+      </td>
     </tr>
     <tr>
       <th class="fixed-th">自己紹介</th>
-      <th><%= contributor.introduction %></th>
+      <td><%= contributor.introduction %></td>
     </tr>
   </tbody>
 </table>
