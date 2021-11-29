@@ -15,7 +15,8 @@ class RoomsController < ApplicationController
     @recipient = Recipient.find(@room.recipient_id)
     @post = Post.find(@room.post_id)
     @contributor = Contributor.find(@post.contributor_id)
-    @messages = Message.where(room_id: @room.id)
+    @messages = Message.where(room_id: @room.id).page(params[:page]).per(10)
     @message = Message.new
   end
+  
 end

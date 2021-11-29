@@ -9,6 +9,11 @@ class MessagesController < ApplicationController
     if @message.save
       redirect_to request.referer
     else
+      @room = Room.find(params[:room_id])
+      @recipient = Recipient.find(@room.recipient_id)
+      @post = Post.find(@room.post_id)
+      @contributor = Contributor.find(@post.contributor_id)
+      @messages = Message.where(room_id: @room.id)
       render 'rooms/show'
     end
   end

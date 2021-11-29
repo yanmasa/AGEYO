@@ -1,38 +1,180 @@
-<h1><%= @post.title %>のチャットルーム</h1>
-<% if recipient_signed_in? %>
-  <h4><%= @contributor.nickname %>とのチャット</h4>
-  <div>
-    <% @messages.each do |message| %>
-      <% if message.is_recipient %>
-        <div class="right-message">
-          <%= message.content %>
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-lg-12">
+      <div class="card chat-app">
+        <div id="plist" class="people-list">
+          <ul class="list-unstyled chat-list mt-2 mb-0">
+            <p>チャット一覧</p>
+            <% if recipient_signed_in? %>
+              <% n = 0 %>
+              <% current_recipient.rooms.each do |room| %>
+                <% if room.chat_status %>
+                  <% n+=1 %>
+                　<% if room != @room %>
+                    <li class="clearfix">
+                      <div class="about">
+                        <div class="name">
+                          <%= link_to Post.find(room.post_id).contributor.nickname, contributor_path(Post.find(room.post_id).contributor) %>
+                        </div>
+                        <div class="status">
+                          <%= link_to room_path(room) do %>
+                            <%= Post.find(room.post_id).title %>
+                          <% end %>
+                        </div>
+                      </div>
+                    </li>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% else contributor_signed_in? %>
+              <% n = 0 %>
+              <% current_contributor.posts.each do |post| %>
+                <% if post.rooms.present? %>
+                  <% post.rooms.each do |room| %>
+                    <% if room.chat_status %>
+                      <% n += 1 %>
+                      <% if room != @room %>
+                        <li class="clearfix">
+                          <div class="about">
+                            <div class="name">
+                              <%= room.recipient.name %>
+                            </div>
+                            <div class="status">
+                              <%= link_to room_path(room) do %>
+                                <%= post.title %>
+                              <% end %>
+                            </div>
+                          </div>
+                        </li>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+            <% if n == 1 || n==0 %>
+              <li class="clearfix">
+                <div class="about">ほかにやり取り中のチャットはございません</div>
+              </li>
+            <% end %>
+          </ul>
         </div>
-      <% else %>
-        <div class="left-message">
-          <%= message.content %>
+        <div class="chat">
+          <% if recipient_signed_in? %>
+            <div class="chat-header clearfix">
+              <div class="row">
+                <div class="col-lg-6">
+                  <h2><%= @post.title %>のチャットルーム</h2>
+                  <h4><%= @contributor.nickname %>とのチャット</h4>
+                </div>
+              </div>
+            </div>
+            <div class="chat-history">
+              <ul class="m-b-0">
+                <% d = "" %>
+                <% @messages.each do |message| %>
+                  <% if message.is_recipient %>
+                    <li class="clearfix">
+                      <div class="message-data">
+                        <span class="message-data-time">
+                          <% unless d == message.created_at.to_s(:year_jp) %>
+                            <%= message.created_at.to_s(:year_jp) %>
+                            <% d = message.created_at.to_s(:year_jp) %>
+                          <% end %>
+                          <%= message.created_at.to_s(:hour_jp) %>
+                        </span>
+                        <div><%= @recipient.name %></div>
+                      </div>
+                      <div class="message my-message">
+                        <%= message.content %>
+                      </div>
+                    </li>
+                  <% else %>
+                    <li class="clearfix">
+                      <div class="message-data text-right">
+                        <span class="message-data-time">
+                          <% unless d == message.created_at.to_s(:year_jp) %>
+                            <%= message.created_at.to_s(:year_jp) %>
+                            <% d = message.created_at.to_s(:year_jp) %>
+                          <% end %>
+                          <%= message.created_at.to_s(:hour_jp) %>
+                        </span>
+                        <div><%= attachment_image_tag @contributor, :profile_image, :fill, 50, 50, format: 'jpg',fallback: "no-imageuser.png", size:'50x50' %></div>
+                      </div>
+                      <div class="message other-message float-right">
+                        <%= message.content %>
+                      </div>
+                    </li>
+                  <% end %>
+                <% end %>
+                <div class='p__paginate '><%= paginate @messages %></div>
+              </ul>
+            </div>
+          <% elsif contributor_signed_in? %>
+            <div class="chat-header clearfix">
+              <div class="row">
+                <div class="col-lg-6">
+                  <h2><%= @post.title %>のチャットルーム</h2>
+                  <h4><%= @recipient.name %>とのチャット</h4>
+                </div>
+              </div>
+            </div>
+            <div class="chat-history">
+              <ul class="m-b-0">
+                <% d = "" %>
+                <% @messages.each do |message| %>
+                  <% if !(message.is_recipient) %>
+                    <li class="clearfix">
+                      <div class="message-data">
+                        <span class="message-data-time">
+                          <% unless d == message.created_at.to_s(:year_jp) %>
+                            <%= message.created_at.to_s(:year_jp) %>
+                            <% d = message.created_at.to_s(:year_jp) %>
+                          <% end %>
+                          <%= message.created_at.to_s(:hour_jp) %>
+                          <div><%= attachment_image_tag @contributor, :profile_image, :fill, 50, 50, format: 'jpg',fallback: "no-imageuser.png", size:'50x50' %></div>
+                        </span>
+                      </div>
+                      <div class="message my-message">
+                        <%= message.content %>
+                      </div>
+                    </li>
+                  <% else %>
+                    <li class="clearfix">
+                      <div class="message-data text-right">
+                        <span class="message-data-time">
+                          <% unless d == message.created_at.to_s(:year_jp) %>
+                            <%= message.created_at.to_s(:year_jp) %>
+                            <% d = message.created_at.to_s(:year_jp) %>
+                          <% end %>
+                          <%= message.created_at.to_s(:hour_jp) %>
+                        </span>
+                        <div><%= @recipient.name %></div>
+                      </div>
+                      <div class="message other-message float-right">
+                        <%= message.content %>
+                      </div>
+                    </li>
+                  <% end %>
+                <% end %>
+                <div class='p__paginate '><%= paginate @messages %></div>
+              </ul>
+            </div>
+          <% end %>
+          <div class="chat-message clearfix">
+            <div class="input-group mb-0">
+              <%= form_with model: @message, url: room_messages_path(@room), method: :post, local: true do |f| %>
+                <div class="input-group-prepend">
+                  <%= f.button :type => "submit", class: 'input-group-text' do  %>
+                    <i class="fas fa-paper-plane"></i>
+                  <% end %>
+                  <%= f.text_field :content, :size=>"100", class:"form-control" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
         </div>
-      <% end %>
-    <% end %>
+      </div>
+    </div>
   </div>
-
-<% elsif contributor_signed_in? %>
-  <h4><%= @recipient.name %>とのチャット</h4>
-  <div>
-    <% @messages.each do |message| %>
-      <% if !(message.is_recipient) %>
-        <div class="right-message">
-          <%= message.content %>
-        </div>
-      <% else %>
-        <div class="left-message">
-          <%= message.content %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-<% end %>
-
-<%= form_with model: @message, url: room_messages_path(@room), method: :post, local: true do |f| %>
-  <%= f.text_field :content %>
-  <%= f.submit 'メッセージを送る' %>
-<% end %>
+</div>
