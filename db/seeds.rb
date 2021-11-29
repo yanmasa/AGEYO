@@ -8,6 +8,3 @@
 
 Recipient.create!(email: "a@aaaa", password: "aaaaaa", name: "aaaaaa", organization_name: "aaaaaa", organization_url: "http://www.zenyokyo.gr.jp/index.htm")
 Recipient.create!(email: "b@bbbb", password: "bbbbbb", name: "bbbbbb", organization_name: "bbbbbb", organization_url: "http://www.zenyokyo.gr.jp/index.htm")
-
-PostGenre.create!(name: "物品")
-PostGenre.create!(name: "活動")
