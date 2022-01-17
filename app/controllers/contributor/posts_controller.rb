@@ -1,4 +1,6 @@
 class Contributor::PostsController < ApplicationController
+    before_action :authenticate_contributor!, exept: [:index]
+  
   def new
     @post = Post.new
   end
