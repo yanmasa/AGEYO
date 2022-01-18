@@ -1,4 +1,6 @@
 class Contributor::ContributorsController < ApplicationController
+  before_action :authenticate_contributor!
+  
   def show
     @contributor = current_contributor
     @posts = @contributor.posts
